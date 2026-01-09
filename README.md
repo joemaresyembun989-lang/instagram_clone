@@ -1,9 +1,9 @@
 # instagram_clone
 
-1. Deskripsi Singkat Project
+# 1. Deskripsi Singkat Project
 Project ini merupakan aplikasi web berbasis Flask (Python) yang meniru fitur dasar media sosial seperti Instagram. Aplikasi ini memungkinkan pengguna untuk melakukan registrasi dan login, mengunggah postingan berupa foto dan caption, melihat dan mengelola profil pengguna, melakukan follow dan unfollow antar pengguna, memberikan like dan unlike pada postingan, serta melakukan mention pengguna lain. Sistem ini menggunakan MySQL sebagai database untuk menyimpan data pengguna, postingan, dan interaksi, sedangkan tampilan antarmuka dibangun menggunakan HTML, CSS, dan Jinja2 Template dengan desain modern menyerupai Instagram.
 
-2. Cara Menjalankan Aplikasi
+# 2. Cara Menjalankan Aplikasi
 1. Pastikan *Python 3* dan *XAMPP (Apache & MySQL)* sudah terinstall.
 2. Jalankan *Apache dan MySQL* melalui XAMPP Control Panel.
 3. Buka *phpMyAdmin* di http://localhost/phpmyadmin.
