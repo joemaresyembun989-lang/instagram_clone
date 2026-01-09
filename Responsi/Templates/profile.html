@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>{{ user.username }} • Instagram</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">{{ user.username }}</div>
+</div>
+
+<div class="profile-wrapper">
+
+    <div class="profile-top">
+        <img src="{{ user.photo }}" class="profile-avatar">
+
+        <div class="profile-info-box">
+            <h2 class="profile-username">{{ user.username }}</h2>
+
+            <div class="profile-stats">
+                <div>
+                    <b>{{ post_count }}</b>
+                    <span>Postingan</span>
+                </div>
+                <div>
+                    <b>{{ followers }}</b>
+                    <span>Pengikut</span>
+                </div>
+                <div>
+                    <b>{{ following }}</b>
+                    <span>Mengikuti</span>
+                </div>
+            </div>
+
+            <p class="profile-bio-text">
+                {{ user.bio or "Belum ada bio" }}
+            </p>
+
+            {% if session['user']['id'] == user.id %}
+            <div class="profile-buttons">
+                <button class="btn-edit" onclick="toggleEdit()">Edit Profil</button>
+                <a href="/logout" class="btn-logout">Logout</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if session['user']['id'] == user.id %}
+    <form method="post"
+          action="/edit_profile"
+          enctype="multipart/form-data"
+          class="edit-profile-form"
+          id="editForm">
+
+        <input type="text"
+               name="bio"
+               placeholder="Tulis bio kamu..."
+               value="{{ user.bio or '' }}">
+
+        <input type="file" name="photo">
+
+        <button type="submit" class="btn-save">
+            Simpan Perubahan
+        </button>
+    </form>
+    {% endif %}
+
+</div>
+
+<div class="profile-grid">
+{% for p in posts %}
+    <img src="{{ p.image }}">
+{% endfor %}
+</div>
+
+<div class="navbar">
+    <a href="/home">🏠</a>
+    <a href="/chat/{{ session['user']['id'] }}">✈</a>
+    <a href="/add">➕</a>
+    <a href="/profile/{{ session['user']['id'] }}">👤</a>
+</div>
+
+<script>
+function toggleEdit() {
+    const form = document.getElementById("editForm");
+    if (form.style.display === "block") {
+        form.style.display = "none";
+    } else {
+        form.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>

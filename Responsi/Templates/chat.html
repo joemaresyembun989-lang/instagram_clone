@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Chat</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="topbar">
+    <div class="logo">Chat</div>
+</div>
+
+<div class="chat-container">
+
+    {% for m in messages %}
+        {% if m.sender_id == session['user']['id'] %}
+        <div class="chat-row me">
+            <div class="chat-bubble chat-me">
+                {{ m.message }}
+            </div>
+        </div>
+        {% else %}
+        <div class="chat-row other">
+            <div class="chat-bubble chat-other">
+                {{ m.message }}
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+
+</div>
+
+<form method="post" class="chat-input">
+    <input type="text" name="message" placeholder="Ketik pesan..." required autocomplete="off">
+    <button type="submit">➤</button>
+</form>
+
+<div class="navbar">
+    <a href="/home">🏠</a>
+    <a href="/chat/{{ session['user']['id'] }}">✈</a>
+    <a href="/add">➕</a>
+    <a href="/profile/{{ session['user']['id'] }}">👤</a>
+</div>
+
+</body>
+</html>
